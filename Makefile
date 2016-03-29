@@ -2,9 +2,14 @@ CXX=g++
 CXX_FLAGS=-O2
 LD_FLAGS=-static ${CC_FLAGS}
 
-all: runner_static runner_java
+runners: runner_static runner_java
 	cp runner_static runner-static/runner
 	cp runner_java runner-java/runner
+
+docker:	runners
+	docker build runner-static
+	docker build runner-java
+
 runner_static: runner_static.o
 	${CXX} -o runner_static ${LD_FLAGS} runner_static.o
 runner_static.o: runner.cpp
