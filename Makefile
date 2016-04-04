@@ -3,8 +3,12 @@ CXX_FLAGS=-O2
 LD_FLAGS=-static ${CC_FLAGS}
 
 runners: runner_static runner_java
+	rm -f runner-static/runner
 	cp runner_static runner-static/runner
+	chmod 500 runner-static/runner
+	rm -f runner-java/runner
 	cp runner_java runner-java/runner
+	chmod 500 runner-java/runner
 
 docker:	runners
 	docker build -t judge-runner-static runner-static
