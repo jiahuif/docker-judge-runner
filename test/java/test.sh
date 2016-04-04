@@ -33,4 +33,11 @@ touch build/answer.txt
 
 run_judge
 
+mkdir -p build/target
+javac exception/Main.java -d build/target
+touch build/input.txt
+touch build/answer.txt
+
+run_judge
+
 
