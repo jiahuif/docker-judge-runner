@@ -5,12 +5,12 @@ public class Main {
 		public Integer c;
 	}
 	public static void main(String args[]) throws Exception {
-		Item[] items = new Item[1024 * 1024 * 4];
+		Item[] items = new Item[1024 * 1024];
 		for (int i = 0 ; i < items.length ; ++i) {
 			Item item = new Item();
 			item.a = "a=" + Math.random();
 			item.b = "b=" + Math.random();
-			item.c = (int) Math.random() * 1024 * 1024 * 4;
+			item.c = (int) Math.random() * 1024 * 1024;
 			items[i] = item;
 		}
 	}
