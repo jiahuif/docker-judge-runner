@@ -7,7 +7,7 @@ function run_judge {
     touch build/stdout.txt
 
     # run with docker
-    docker run --rm -v `pwd`/build/target:/target:ro -v `pwd`/build/input.txt:/tmp/stdin.txt -v `pwd`/build/stdout.txt:/tmp/stdout.txt -v `pwd`/build/stderr.txt:/tmp/stderr.txt judge-runner-java || exit 1
+    docker run --read-only --rm -v `pwd`/build/target:/target:ro -v `pwd`/build/input.txt:/tmp/stdin.txt -v `pwd`/build/stdout.txt:/tmp/stdout.txt -v `pwd`/build/stderr.txt:/tmp/stderr.txt judge-runner-java || exit 1
 
     # compare with diff
     diff build/answer.txt build/stdout.txt || exit 2
