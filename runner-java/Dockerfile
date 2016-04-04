@@ -12,7 +12,5 @@ RUN \
 
 COPY runner /runner
 
-VOLUME ["/classpath", "/tmp/stdin.txt", "/tmp/stdout.txt" , "/tmp/stderr.txt"]
-
-CMD ["/runner", "java" , "-cp", "/classpath", "Main"]
+CMD ["/runner", "java" , "-cp", "/target", "Main"]
 
