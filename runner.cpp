@@ -50,7 +50,7 @@ int main(int argc, char ** argv)
         freopen("/tmp/stderr.txt", "a+", stderr);
         // chroot if using static runner
         #ifdef RUNNER_STATIC
-        if (chroot("/jail"))
+        if (chroot("/target"))
             perror("chroot");
         #endif
         // optionally set uid & gid
