@@ -12,6 +12,9 @@ function run_judge {
     # compare with diff
     diff build/answer.txt build/stdout.txt || exit 2
 
+    # show content in stderr should there be any
+    cat build/stderr.txt
+
     # clean up
     rm -rf build/
 }
@@ -22,4 +25,12 @@ echo 1 2 > build/input.txt
 echo 3 > build/answer.txt
 
 run_judge
+
+mkdir -p build/target
+javac large_array/Main.java -d build/target
+touch build/input.txt
+touch build/answer.txt
+
+run_judge
+
 
