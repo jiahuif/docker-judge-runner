@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <sys/resource.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -48,6 +49,10 @@ int main(int argc, char ** argv)
         freopen("/tmp/stdin.txt", "r" , stdin);
         freopen("/tmp/stdout.txt", "w", stdout);
         freopen("/tmp/stderr.txt", "a+", stderr);
+        if (fchmod(STDIN_FILENO, 0600) 
+            || fchmod(STDOUT_FILENO, 0600) 
+            || fchmod(STDERR_FILENO, 0600))
+            perror("fchmod");
         // chroot if using static runner
         #ifdef RUNNER_STATIC
         if (chroot("/target"))
