@@ -7,8 +7,8 @@ runners: runner_static runner_java
 	cp runner_java runner-java/runner
 
 docker:	runners
-	docker build runner-static
-	docker build runner-java
+	docker build -t judge-runner-static runner-static
+	docker build -t judge-runner-java runner-java
 
 runner_static: runner_static.o
 	${CXX} -o runner_static ${LD_FLAGS} runner_static.o
