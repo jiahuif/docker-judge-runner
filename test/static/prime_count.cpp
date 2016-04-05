@@ -7,11 +7,11 @@ int main()
 {
     int n;
     cin >> n;
-    vector<int> primes;
+    vector<int> * primes = new vector<int> ();
     for (int i = 2; i <= n ; ++i)
     {
         bool is_prime = true;
-        for (auto it = primes.begin() ; it != primes.end() ; ++it)
+        for (auto it = primes->begin() ; it != primes->end() ; ++it)
         {
             if (i % *it == 0)
             {
@@ -20,10 +20,11 @@ int main()
             }
         }
         if (is_prime) {
-            primes.push_back(i);
+            primes->push_back(i);
         }
     }
-    cout << primes.size() << endl;
+    cout << primes->size() << endl;
+    delete primes;
     return 0;
 }
 
