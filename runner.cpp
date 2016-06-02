@@ -35,6 +35,7 @@ int main(int argc, char ** argv)
             fprintf(stderr, "Signal: %s\n", strsignal(signal));
         } else {
             // should never get there
+            fprintf(stderr, "Unknown status: %d\n", status);
         }
         print_preformance(&ruse);
     } else {
