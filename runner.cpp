@@ -14,6 +14,8 @@ void print_preformance(const struct rusage * ruse) {
     unsigned time = ruse->ru_utime.tv_sec * 1000 + ruse->ru_utime.tv_usec / 1000;
     time += ruse->ru_stime.tv_sec * 1000 + ruse->ru_stime.tv_usec / 1000;
     fprintf(stderr, "Total time: %u seconds and %u milliseconds. Memory: %ld\n", time / 1000 , time % 1000, ruse->ru_maxrss);
+    printf("TIME_MILLISECONDS=%u\n", time);
+    printf("MEMORY=%ld\n", ruse->ru_maxrss);
 
 }
 
@@ -29,13 +31,16 @@ int main(int argc, char ** argv)
             // exited normally
             int exit_code = WEXITSTATUS(status);
             fprintf(stderr, "Exit code: %d\n", exit_code);
+            printf("EXIT_CODE=%d\n", exit_code);
         } else if (WIFSIGNALED(status)) {
             // killed by signal
             int signal = WTERMSIG(status);
             fprintf(stderr, "Signal: %s\n", strsignal(signal));
+            printf("SIGNAL=%d\n", signal);
         } else {
             // should never get there
             fprintf(stderr, "Unknown status: %d\n", status);
+            printf("UNKNOWN=%d\n", status);
         }
         print_preformance(&ruse);
     } else {
