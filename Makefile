@@ -11,8 +11,8 @@ runners: runner_static runner_java
 	chmod 500 runner-java/runner
 
 docker:	runners
-	docker build -t judge-runner-static runner-static
-	docker build -t judge-runner-java runner-java
+	docker build -t indeedplusplus/judge-runner:static runner-static
+	docker build -t indeedplusplus/judge-runner:java runner-java
 
 runner_static: runner_static.o
 	${CXX} -o runner_static ${LD_FLAGS} runner_static.o
