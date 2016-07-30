@@ -1,0 +1,17 @@
+sudo: required
+
+language: cpp
+
+compiler: gcc
+
+services:
+  - docker
+
+script: make docker && cd test && bash test.sh
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker push indeedplusplus/judge-runner:static
+      docker push indeedplusplus/judge-runner:java
+    fi
