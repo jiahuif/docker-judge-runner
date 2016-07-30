@@ -1,0 +1,10 @@
+sudo: required
+
+language: cpp
+
+compiler: gcc
+
+services:
+  - docker
+
+script: make docker && cd test && bash test.sh
