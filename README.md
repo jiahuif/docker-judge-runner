@@ -1,9 +1,9 @@
 Docker Judge Runner
 ===================
 
-This project is a runner for online judge systems.
+[![Build Status](https://travis-ci.org/IndeedPlusPlus/docker-judge-runner.svg?branch=master)](https://travis-ci.org/IndeedPlusPlus/docker-judge-runner)
 
-CI: http://ci.indeed.moe/job/docker-judge-runner/
+This project is a runner for online judge systems.
 
 Features
 --------
