@@ -21,6 +21,8 @@ void print_preformance(const struct rusage * ruse) {
 
 int main(int argc, char ** argv)
 {
+    if (argc <= 1)
+        return 1;
     pid_t pid = fork();
     if (pid) {
         // monitor
@@ -45,8 +47,6 @@ int main(int argc, char ** argv)
         print_preformance(&ruse);
     } else {
         // runner    
-        if (argc <= 1)
-            return 1;
         char ** args = (char **) malloc(argc * sizeof(char *));
         int i = 0;
         for (i = 1 ; i < argc ; ++i)
