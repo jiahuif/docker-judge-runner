@@ -52,9 +52,12 @@ int main(int argc, char ** argv)
         for (i = 1 ; i < argc ; ++i)
             args[i - 1] = argv[i];
         args[i - 1] = NULL;
-        freopen("/tmp/stdin.txt", "r" , stdin);
-        freopen("/tmp/stdout.txt", "w", stdout);
-        freopen("/tmp/stderr.txt", "a+", stderr);
+        if (!freopen("/tmp/stdin.txt", "r" , stdin))
+            perror("freopen");
+        if (!freopen("/tmp/stdout.txt", "w", stdout))
+            perror("freopen");
+        if (!freopen("/tmp/stderr.txt", "a+", stderr))
+            perror("freopen");
         if (fchmod(STDIN_FILENO, 0600) 
             || fchmod(STDOUT_FILENO, 0600) 
             || fchmod(STDERR_FILENO, 0600))
