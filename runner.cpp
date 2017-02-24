@@ -72,6 +72,18 @@ int main(int argc, char ** argv)
             perror("setgid");
         if (setuid(RUNNER_UID))
             perror("setuid");
+        // check for TIME_LIMIT env
+        char * time_limit_str = getenv("TIME_LIMIT");
+        if (time_limit_str)
+        {
+            unsigned long long ul = 0;
+            sscanf(time_limit_str, "%llu", &ul);
+            struct rlimit rc;
+            rc.rlim_cur = ul;
+            rc.rlim_max = ul + 1;
+            setrlimit(RLIMIT_CPU, &rc);
+            unsetenv("TIME_LIMIT");
+        }        
         if (execvp(argv[1] , args))
         {
             perror("exec");
